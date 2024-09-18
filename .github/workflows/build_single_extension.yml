@@ -34,6 +34,7 @@ jobs:
           if [[ -z "${{ env.REPO }}" ]]; then
             echo "REPO=${{ github.repository_owner }}/aniyomi-extensions" >> $GITHUB_ENV
           fi
+          
       - name: Clone Repository (Latest)
         uses: actions/checkout@v4
         with:
@@ -46,6 +47,9 @@ jobs:
         with:
           java-version: 21
           distribution: zulu
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
 
       - name: Build APK
         env:
